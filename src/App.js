@@ -7,32 +7,51 @@ import faker from 'faker'
 
 function App() {
   
-    const [name, setName] = useState('Alan Smith')
-    const buttonsMarkup = (
-      <div>
-        <button className="button button2">YES</button>
-        <button className="button button3">NO</button>
-      </div>
-    )
+    const [name, setName] = useState('Alan Smith');
+    const [cards, setCards] = useState([
+      {
+        name: 'Jackie Brown',
+        title: 'Airline agent', 
+        avatar: faker.image.avatar()
+      },
+      {
+        name: 'Ton Clancy',
+        title: 'Writer', 
+        avatar: faker.image.avatar()
+      },
+      {
+        name:'Roberto Machado',
+        title: 'Investigador Particular', 
+        avatar: faker.image.avatar()
+      }
+    ])
 
-    const changeNameHandler = name => setName(name)
-    
+    const [showCard, setShowCard] = useState(true); 
 
-    const changeInputHandler = event =>setName(event.target.value)
+    const toggleShowCard = () => setShowCard(!showCard);
+
+    const deleteCardHandler =(cardIndex)=>{
+      const cards_copy =[...cards]
+      cards_copy.splice(cardIndex, 1)
+      console.log('cards_copy', cards_copy); 
+      console.log('cards', cards)
+      setCards(cards_copy)
+
+    }    
+       
+       const cardsMarkup = showCard &&( 
+          cards.map((card, index)=> <Card
+          avatar={card.avatar}
+          name={card.name}
+          title={card.title}
+          onDelete={()=>deleteCardHandler(index)}
+        />)
+       )
+
     return (
       <div className="App">
-        <button className="button" onClick={() => changeNameHandler('John Doe')}>Change Name</button>
-        <Card
-          avatar='https://s3.amazonaws.com/uifaces/faces/twitter/skkirilov/128.jpg'
-          name={name}
-          title='International Creative Administrator'
-          onChangeName={() => changeNameHandler('Michael Chan')}
-          onChangeInput={changeInputHandler}
-        >{buttonsMarkup}
-        </Card>
-  
-  
-  
+          <button className="button button-red" onClick={toggleShowCard}>toggleShowCard</button>
+          {cardsMarkup}
       </div>
     );
   }

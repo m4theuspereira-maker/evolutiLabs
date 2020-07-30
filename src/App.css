@@ -27,5 +27,6 @@
     cursor: pointer;
   }
   
-  .button2 {background-color: #008CBA;} /* Blue */
+  .button-blue {background-color: #008CBA;} /* Blue */
+.button-red {background-color: #f44336;} /* Red */ 
 
