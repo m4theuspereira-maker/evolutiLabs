@@ -27,6 +27,19 @@
     cursor: pointer;
   }
   
-  .button-blue {background-color: #008CBA;} /* Blue */
+.text {
+  font-weight: bold;
+  color: black;
+}
+
+.button-blue {background-color: #008CBA;} /* Blue */
 .button-red {background-color: #f44336;} /* Red */ 
+
+.pink { 
+  background-color: pink;
+}
+
+.red {
+  background-color: red;
+}
 
